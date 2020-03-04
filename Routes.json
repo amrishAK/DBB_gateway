@@ -1,0 +1,13 @@
+{
+    "services" : [
+        {
+            "Endpoint" : "",
+            "Replication" : [
+                {
+                    "Ip" : "",
+                    "Port" : ""
+                }
+            ]
+        }
+    ]
+}
