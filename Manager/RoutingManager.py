@@ -6,7 +6,7 @@ class ExampleTest:
         self.name = self.name + 1
         print("ExampleTEst"+ str(self.name))
 
-class RoutingManager:
+class RoutingManager1:
     name = 0
     def __init__(self,eTest):
         self.eTest = eTest
@@ -19,4 +19,12 @@ class RoutingManager:
         content_length = int(headers['Content-Length']) # <--- Gets the size of data
         post_data = rfile.read(content_length) # <--- Gets the data itself
         return requests.post(url = "http://localhost:7760/login/login",data=post_data,headers=headers)
+
+
+class RoutingManager:
+    pass
+
+
+
+    
         

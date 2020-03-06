@@ -4,14 +4,14 @@ from http import server
 import requests
 import json
 from dependency_injector import containers, providers
-from Manager.RoutingManager import RoutingManager
+from Manager.RoutingManager import RoutingManager1
 from Manager.RoutingManager import ExampleTest
 
 #Setting up the Depdency injection container
 class Setup(containers.DynamicContainer):
     eTest = providers.Singleton(ExampleTest)   
     #life time -> like scoped => object is created for each call
-    routingManager = providers.Factory(RoutingManager, eTest = eTest)
+    routingManager = providers.Factory(RoutingManager1, eTest = eTest)
     
 #Handler assigned to each incoming Http request
 class SHandler(http.server.BaseHTTPRequestHandler):
