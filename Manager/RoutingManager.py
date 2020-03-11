@@ -1,4 +1,5 @@
 import requests
+from Helper.JsonHandler import JsonHandler
 
 class ExampleTest:
     name = 0
@@ -22,8 +23,22 @@ class RoutingManager1:
 
 
 class RoutingManager:
-    pass
-
+    def __init__(self):
+        self._jsonHandler = JsonHandler()
+        self._routes = self._jsonHandler.LoadJson('Routes.json')['services']
+        self._routes = list(self._routes)
+    
+    def GetServiceUrl(self,path):
+        try:
+            pathArray = path.split("/")
+            service = pathArray[1]
+            endpoint = next(endpoint for endpoint in self._routes if endpoint['Endpoint'] == service)
+            path = path.replace("/"+service,"")
+            return endpoint['Primary'], endpoint['Port'], path
+        except Exception as ex:
+            raise Exception(ex)
+    
+        
 
 
     

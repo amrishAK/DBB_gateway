@@ -1,12 +1,19 @@
 {
     "services" : [
         {
-            "Endpoint" : "",
-            "Replication" : [
-                {
-                    "Ip" : "",
-                    "Port" : ""
-                }
+            "Endpoint" : "HS",
+            "Port" : "7760",
+            "Primary": "localhost",
+            "Replica" : [
+                "localhost"
+            ]
+        },
+        {
+            "Endpoint" : "AS",
+            "Port" : "7760",
+            "Primary": "localhost",
+            "Replica" : [
+                "localhost"
             ]
         }
     ]

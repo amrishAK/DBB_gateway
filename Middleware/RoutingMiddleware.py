@@ -16,8 +16,9 @@ class RoutingMiddleware:
     def InvokeRequest(self,context:RequestContext):
         try:
             print("In Routing Middleware --> \n Request Invoked")
-            endpoint = RoutingEndpoint(host="localhost",port=7760,url='/login/login')
+            host,port,url = self._routingManager.GetServiceUrl(context.Path)
+            endpoint = RoutingEndpoint(host,port,url)
             return self._requestRedirectManager.RedirectRequest(context,endpoint)
         except Exception as ex :
-            context.SetResponse(500,str(ex),str(ex).encode('utf-8'))
+            context.SetResponse(500,"Internal Gateway Error",str(ex).encode('utf-8'))
             return context
