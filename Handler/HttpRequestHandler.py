@@ -15,7 +15,7 @@ class HttpRequestHandler(BaseHTTPRequestHandler):
     def ForwardRequest(self):
         context = RequestContext(self.headers,self.path,self.rfile,self.command)
         contextDict = context.__dict__
-        print("In Request Handler -->\n Request" + str(contextDict))
+        print("--->In Request Handler \n Request" + str(contextDict))
         response = GatewayContainer.routingMiddleware().InvokeRequest(context)
         self.SetResponse(response)
 

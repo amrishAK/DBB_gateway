@@ -1,0 +1,8 @@
+{
+    "connectionString" : "mongodb+srv://testUser:Mirage_91@cluster0-p8d7i.gcp.mongodb.net/HealthMonitor?authSource=admin&replicaSet=Cluster0-shard-0&readPreference=primary&appname=MongoDB%20Compass%20Community&ssl=true",
+    "dataBase":"HealthMonitor",
+    "collectionName":"ServerStatus",
+    "dbReconnection": 3,
+    "port" : 8001
+    
+}

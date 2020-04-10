@@ -3,9 +3,15 @@
         {
             "Endpoint" : "HS",
             "Port" : "7760",
-            "Primary": "localhost",
+            "Primary": {
+                "age" : 0,
+                "server" : "localhost"
+            },
             "Replica" : [
-                "localhost"
+                {
+                    "age" : 0,
+                    "server" : "localhost"
+                }
             ]
         },
         {
@@ -13,7 +19,10 @@
             "Port" : "7760",
             "Primary": "localhost",
             "Replica" : [
-                "localhost"
+                {
+                    "age" : 0,
+                    "server" : "localhost"
+                }
             ]
         }
     ]
