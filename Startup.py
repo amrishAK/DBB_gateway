@@ -14,12 +14,13 @@ class GatewayContainer (containers.DeclarativeContainer):
     
     #Adding services
     routingService = providers.Singleton(RoutingManager)
-    requestRedirectService = providers.Factory(RequestRedirectManager)
-    loggingService = providers.Factory(LogHandler)
+    loggingService = providers.Singleton(LogHandler)
+    requestRedirectService = providers.Factory(RequestRedirectManager,loggingService)
     dbService = providers.Factory(DbHandler)
 
     #Adding Managers
     serverSwitchingService = providers.Factory(ServerSwitchingManager,routingService,requestRedirectService,dbService,loggingService)
+    
 
     #Adding Middlewares
     routingMiddleware = providers.Factory(RoutingMiddleware,routingService,requestRedirectService,serverSwitchingService,loggingService)
