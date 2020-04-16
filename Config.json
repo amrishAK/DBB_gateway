@@ -3,6 +3,6 @@
     "dataBase":"HealthMonitor",
     "collectionName":"ServerStatus",
     "dbReconnection": 3,
-    "port" : 8001
+    "port" : 8080
     
 }
