@@ -5,7 +5,7 @@ from Handler.HttpRequestHandler import HttpRequestHandler
 
 
 def run():
-    httpd = socketserver.TCPServer(("localhost", 8001), HttpRequestHandler)
+    httpd = socketserver.TCPServer(("localhost", 8080), HttpRequestHandler)
     try:
         httpd.serve_forever()
     except :
