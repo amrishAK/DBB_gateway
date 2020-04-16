@@ -5,14 +5,14 @@ from Helper.RequestContext import RequestContext
 
 '''absorbs the request and then forward it to the RoutingMiddleware'''
 class HttpRequestHandler(BaseHTTPRequestHandler):
-    def end_headers (self):
+    def do_OPTIONS(self):
         self.send_header('Access-Control-Allow-Origin', '*')
-        BaseHTTPRequestHandler.end_headers(self)
+        self.send_header("Access-Control-Allow-Headers", "Content-Type")
+        self.end_headers()
 
     def SetResponse(self,context : RequestContext):
         self.send_response(context.ResponseCode,context.ResponseReason)
         self.send_header('Content-type', 'application/json')
-        self.send_header('Access-Control-Allow-Origin', '*')
         self.end_headers()
         self.wfile.write(context.ResponseMessage)
 
