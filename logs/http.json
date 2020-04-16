@@ -1,1 +1,3 @@
 {"Name": "HS", "Host": "localhost", "Port": "8080", "Url": "/post", "message": "GET", "time": "2020-04-16T08:59:45.916273"}
+{"Name": "HS", "Host": "localhost", "Port": "8080", "Url": "/post", "message": "POST", "time": "2020-04-16T09:45:19.028851"}
+{"Name": "HS", "Host": "localhost", "Port": "8080", "Url": "/post", "message": "POST", "time": "2020-04-16T09:46:23.647804"}

@@ -5,23 +5,18 @@
             "Port" : "8080",
             "Primary": {
                 "age" : 0,
-                "server" : "localhost",
+                "server" : "3.217.14.104",
 				"Alive" : true
             },
             "Replica" : [
                 {
                 "age" : 0,
-                "server" : "localhost",
+                "server" : "3.217.14.104",
 				"Alive" : true
 				},
                 {
                     "age" : 0,
-                    "server" : "10.1.1.198",
-					"Alive" : true
-                },
-                {
-                    "age" : 0,
-                    "server" : "10.1.3.180",
+                    "server" : "3.95.87.250",
 					"Alive" : true
                 }
             ]
