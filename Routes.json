@@ -2,26 +2,27 @@
     "services" : [
         {
             "Endpoint" : "HS",
-            "Port" : "7760",
+            "Port" : "8080",
             "Primary": {
                 "age" : 0,
-                "server" : "localhost"
+                "server" : "localhost",
+				"Alive" : true
             },
             "Replica" : [
                 {
-                    "age" : 0,
-                    "server" : "localhost"
-                }
-            ]
-        },
-        {
-            "Endpoint" : "AS",
-            "Port" : "7760",
-            "Primary": "localhost",
-            "Replica" : [
+                "age" : 0,
+                "server" : "localhost",
+				"Alive" : true
+				},
                 {
                     "age" : 0,
-                    "server" : "localhost"
+                    "server" : "10.1.1.198",
+					"Alive" : true
+                },
+                {
+                    "age" : 0,
+                    "server" : "10.1.3.180",
+					"Alive" : true
                 }
             ]
         }

@@ -23,7 +23,7 @@ class RoutingMiddleware:
             print("--->In Routing Middleware \n Request Invoked")
             self._currentEndpoint = self._routingManager.GetServiceUrl(context.Path)
             return self._requestRedirectManager.RedirectRequest(context,self._currentEndpoint)
-        except ConnectionRefusedError as ex :
+        except (ConnectionRefusedError,TimeoutError) as ex :
             #code to change the primary and handle things
             return self._serverSwitch.SwitchServer(context,self._currentEndpoint)
         except Exception as ex:

@@ -6,6 +6,9 @@ class RoutingManager:
     def __init__(self):
         self._jsonHandler = JsonHandler()
         self._routes = self._jsonHandler.LoadJson('Routes.json')
+
+    def __del__(self):
+        self._jsonHandler.WriteJson('Routes.json',self._routes)
     
     def GetServiceUrl(self,path):
         try:

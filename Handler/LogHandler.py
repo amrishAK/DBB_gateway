@@ -22,20 +22,20 @@ class LogHandler:
         #server Switch logger
         ssLogHandler = logging.FileHandler(filename="logs/ss.json")
         ssLogHandler.setFormatter(jsonFormat)
-        self.ssLogger = logging.getLogger('http')
-        self.ssLogger.addHandler(httpLogHandler)
+        self.ssLogger = logging.getLogger('ss')
+        self.ssLogger.addHandler(ssLogHandler)
         self.ssLogger.setLevel(logging.INFO)                                                                                                                                                                                               
         #error logger
         errorLogHandler = logging.FileHandler(filename="logs/error.json")
         errorLogHandler.setFormatter(jsonFormat)
-        self.errorLogger = logging.getLogger('http')
-        self.errorLogger.addHandler(httpLogHandler)
+        self.errorLogger = logging.getLogger('error')
+        self.errorLogger.addHandler(errorLogHandler)
         self.errorLogger.setLevel(logging.ERROR)
         #data logger
         dataLogHandler = logging.FileHandler(filename="logs/data.json")
         dataLogHandler.setFormatter(jsonFormat)
-        self.dataLogger = logging.getLogger('http')
-        self.dataLogger.addHandler(httpLogHandler)
+        self.dataLogger = logging.getLogger('data')
+        self.dataLogger.addHandler(dataLogHandler)
         self.dataLogger.setLevel(logging.INFO)
 
     def LogHttpInfo(self,endpoint:RoutingEndpoint,method):
@@ -50,5 +50,5 @@ class LogHandler:
     def LogSSError(self):
         pass
 
-    def DataLogger(self):
-        pass
+    def DataLogger(self,payload):
+        self.dataLogger.info("sample",extra={'payload' : payload})

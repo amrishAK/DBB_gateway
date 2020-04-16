@@ -5,6 +5,8 @@ from Manager.RoutingManager import RoutingManager
 from Handler.DbHandler import DbHandler
 from Handler.LogHandler import LogHandler
 from pymongo.collection import Collection 
+import http.client
+
 
 class ServerSwitchingManager:
 
@@ -18,7 +20,7 @@ class ServerSwitchingManager:
         try:
             print("--->In Server Switching Manager")
             polling, statusCollection = self._dbHandler.GetStatusCollection()
-
+            polling = True
             if not polling :
                 serviceRoutes = self._routingManager._routes['services']
                 #upate the data 
@@ -39,9 +41,29 @@ class ServerSwitchingManager:
                 #redirect the request   
                 return self._requestRedirectManager.RedirectRequest(context,endPoint)
             else:
-                #returns response asking client to wait 
-                #polls are the client to select primary
-                pass
+                serviceList = self._routingManager._routes['services']
+                endpoint = next(endpoint for endpoint in serviceList if endpoint['Endpoint'] == endPoint.Name)
+                endpointIndex = serviceList.index(endpoint)
+                for host in endpoint['Replica']:
+                    #checks the server availability by polling
+                    try:
+                        print("Polling..." + str(host))
+                        client = http.client.HTTPConnection(host['server'],endpoint['Port'])   
+                        client.request('GET',"/test")
+                        response = client.getresponse()
+                        if response.status == 200:
+                            print("Primary found")
+                            endPoint.Url.replace(endpoint['Primary']['server'],host['server'])
+                            endPoint.Host = host['server']
+                            endpoint['Primary'] = host
+                            print(endPoint)
+                            self._routingManager._routes['services'][endpointIndex] = endpoint
+                            return self._requestRedirectManager.RedirectRequest(context,endPoint)
+                    except Exception:
+                        continue
+                        
+            context.SetResponse(503,"Service Temporarily Unavailable",("Service Temporarily Unavailable".encode('utf-8')))
+            return context
         except Exception as ex:
             context.SetResponse(500,"Internal Gateway Error",str(ex).encode('utf-8'))
             return context
